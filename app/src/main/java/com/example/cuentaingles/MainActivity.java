@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btn_campoInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent insertarPantallaRegistro = new Intent(MainActivity.this,InsertarRegistro.class);
+                Intent insertarPantallaRegistro = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(insertarPantallaRegistro);
             }
         });
