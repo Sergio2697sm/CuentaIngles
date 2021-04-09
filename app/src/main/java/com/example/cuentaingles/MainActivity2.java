@@ -51,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
         //Log.d("prueba", "hola");
         //Toast.makeText(getApplicationContext(), "hola", Toast.LENGTH_SHORT);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://localhost/apiCuentaIngles/")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.142/apiCuentaIngles/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         historialAPI historialAPI = retrofit.create(historialAPI.class);
@@ -62,8 +62,7 @@ public class MainActivity2 extends AppCompatActivity {
                 try {
 
                     if(response.isSuccessful()) {
-                        //Toast.makeText(getApplicationContext(), "subido con exito", Toast.LENGTH_SHORT);
-                        Log.d("prueba", "subido con exito");
+                        Toast.makeText(MainActivity2.this, "subido con exito", Toast.LENGTH_SHORT).show();
                         Intent pantallaInicio = new Intent(MainActivity2.this, MainActivity.class);
                         startActivity(pantallaInicio);
                     }
@@ -76,7 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Registro> call, Throwable t) {
-                Log.d("prueba", "Error de conexion");
+                Log.d("prueba", t.getMessage());
 
                // Toast.makeText(getApplicationContext(), "Error de conexion", Toast.LENGTH_SHORT);
 
