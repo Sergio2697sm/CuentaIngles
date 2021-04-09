@@ -9,10 +9,11 @@ import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface historialAPI {
-
+    @Headers("Content-Type: application/json")
     @POST("post.php")
     @FormUrlEncoded
     Call<Registro> subirRegistro(

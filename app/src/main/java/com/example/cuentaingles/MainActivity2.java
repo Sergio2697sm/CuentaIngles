@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.cuentaingles.interfaces.historialAPI;
 import com.example.cuentaingles.models.Registro;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,8 +53,10 @@ public class MainActivity2 extends AppCompatActivity {
         //Log.d("prueba", "hola");
         //Toast.makeText(getApplicationContext(), "hola", Toast.LENGTH_SHORT);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.142/apiCuentaIngles/")
-                .addConverterFactory(GsonConverterFactory.create()).build();
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://apicuentas.sergiomartinez2m.es/")
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
 
         historialAPI historialAPI = retrofit.create(historialAPI.class);
         Call<Registro> call = historialAPI.subirRegistro(tiempoPasado,descripcionPasada);
@@ -60,7 +64,6 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Registro> call, Response<Registro> response) {
                 try {
-
                     if(response.isSuccessful()) {
                         Toast.makeText(MainActivity2.this, "subido con exito", Toast.LENGTH_SHORT).show();
                         Intent pantallaInicio = new Intent(MainActivity2.this, MainActivity.class);
@@ -68,15 +71,15 @@ public class MainActivity2 extends AppCompatActivity {
                     }
 
                 }catch (Exception ex){
-                    Log.d("prueba", "error");
+                    Log.d("pruebaException", "error");
                    // Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT);
                 }
             }
 
             @Override
             public void onFailure(Call<Registro> call, Throwable t) {
-                Log.d("prueba", t.getMessage());
 
+                Log.d("pruebaonFailure", t.getMessage());
                // Toast.makeText(getApplicationContext(), "Error de conexion", Toast.LENGTH_SHORT);
 
             }

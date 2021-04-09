@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.142/apiCuentaIngles/")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://apicuentas.sergiomartinez2m.es/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         historialAPI historialAPI = retrofit.create(historialAPI.class);
